@@ -38,11 +38,11 @@ def parseChapters(filename):
         # ffmpeg requires an output file and so it errors
         # when it does not get one so we need to capture stderr,
         # not stdout.
-        output = sp.check_output(command, stderr=sp.STDOUT, universal_newlines=True)
-    except CalledProcessError as e:
+        output = sp.check_output(command, stderr=sp.STDOUT)
+    except sp.CalledProcessError as e:
         output = e.output
 
-    chapters = json.loads(output)['chapters']
+    chapters = json.loads(output.decode("utf-8"))['chapters']
 
     print('Loaded {} chapters from media file.'.format(len(chapters)))
 
@@ -74,7 +74,7 @@ def getChapters(inputFile,includedChapters=[], forceExtension=None):
         # Strip out any characters Windows does not like and this should work on all other systems as well, because they should be less restrictive.
         chap['outfile'] = path + "/" + newdir + "/" + str(chap_num) + ' - ' + re.sub("[\"%/<>^|?\\/]", '_', chap['tags']['title']) + fext
         
-        print("Added chapter {} for extraction. From {} to {} into {}".format(chap_num,chap['start_time'],chap['end_time'],chap['outfile']))
+        print("Added chapter {} for extraction. From {} to {} into {}".format(chap_num,chap['start_time'],chap['end_time'],chap['outfile'].encode('ascii', 'ignore')))
         filteredChapters.append(chap)
         
     return filteredChapters
@@ -97,7 +97,7 @@ def convertChapters(chapters, inputFile):
             '-t', str(float(chap['end_time']) - float(chap['start_time'])), # Enter the duration of the clip.
             chap['outfile'] # The output path
         ]
-        print("Command: {0}".format(' '.join(command)))
+        print("Command: {0}".format(' '.join(command).encode('ascii', 'ignore')))
         try:
             # ffmpeg requires an output file and so it errors
             # when it does not get one
@@ -107,9 +107,9 @@ def convertChapters(chapters, inputFile):
             end = time.time()
             print("File conversion completed in {} seconds.".format(end - start))
             #pass
-        except CalledProcessError as e:
+        except sp.CalledProcessError as e:
             output = e.output
-            raise RuntimeError("command '{}' returned with error (code {}): {}".format(e.cmd, e.returncode, e.output))    
+            raise RuntimeError("command '{}' returned with error (code {}): {}".format(e.cmd, e.returncode, e.output.encode('ascii', 'ignore')))    
             return False
 
     return True

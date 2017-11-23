@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26401.1
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FFmpegChapterSplit", "FFmpegChapterSplit\FFmpegChapterSplit.pyproj", "{05D4D66C-9426-4538-A854-8C6CA37C95E5}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FFmpegConcat", "FFmpegConcat\FFmpegConcat.pyproj", "{84218CA4-411A-496B-AB15-84309601A5CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +15,13 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{05D4D66C-9426-4538-A854-8C6CA37C95E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{05D4D66C-9426-4538-A854-8C6CA37C95E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84218CA4-411A-496B-AB15-84309601A5CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84218CA4-411A-496B-AB15-84309601A5CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9AC3485-CD94-421F-BE07-F7ABC1C5C432}
 	EndGlobalSection
 EndGlobal
